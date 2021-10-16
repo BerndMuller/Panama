@@ -16,8 +16,8 @@ public class HelloWorldPanama {
 	}
     
     public void sayHello() throws Throwable {
-    	System.loadLibrary("hello"); // libhello.so, kein Präfix, File-Extension, Pfad
-    	Optional<MemoryAddress> address = SymbolLookup.loaderLookup().lookup("hello"); // C-Funktion hello()
+    	System.loadLibrary("hello"); // use library libhello.so, omit prefix and file extension
+    	Optional<MemoryAddress> address = SymbolLookup.loaderLookup().lookup("hello"); // C function hello()
     	MethodHandle hello = CLinker.getInstance().downcallHandle(
     			address.get(),
     			MethodType.methodType(void.class),

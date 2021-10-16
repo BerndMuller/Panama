@@ -6,7 +6,7 @@ export LIB=/usr/lib/jvm/java-17-openjdk-17.0.0.0.35-1.rolling.fc34.x86_64/includ
 
 javac -d $TARGET $SOURCE/de/pdbm/HelloWorldJni.java
 
-# generiert Datei target/classes/de_pdbm_HelloWorldJni.h:
+# generates target/classes/de_pdbm_HelloWorldJni.h:
 javac -h $TARGET $SOURCE/de/pdbm/HelloWorldJni.java
 
 cp src/main/c/de_pdbm_HelloWorldJni.c target/classes/
