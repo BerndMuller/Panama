@@ -37,7 +37,7 @@
 					<arguments>
 						<argument>--add-modules=jdk.incubator.foreign </argument>
 						<argument>--enable-native-access=ALL-UNNAMED</argument>
-						<argument>de.pdbm.Quicksort</argument>
+						<argument>${exec.mainClass}</argument>
 					</arguments>
 				</configuration>
 			</plugin>

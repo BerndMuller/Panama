@@ -40,26 +40,60 @@ readelf -sW target/classes/libhello.so
 ```
 
 
-## Quicksort
+## FFM API to access System Libraries
 
-The C standard library implements the well known quicksort algorithm. The function is
-called ``qsort`` and available via ``<stdlib.h>``. The 
-[FFM API introduction](https://github.com/openjdk/panama-foreign/blob/foreign-jextract/doc/panama_ffi.md)
-uses this function to show two way communication in FFM: Java is calling C's ``qsort`` which
-uses in turn a comparison function implemented in Java. Have a look into the class
-Quicksort for details.
+System libraries are used via ``CLinker.systemLookup().lookup(<func>)`` as demonstrated blow.
 
+At the moment the examples include
 
-To run the quicksort example do ``mvn compile``, then change directory to ``target/classes`` and do
+* Process Id
+* Quicksort
 
-```
-java --add-modules=jdk.incubator.foreign --enable-native-access=ALL-UNNAMED  de.pdbm.Quicksort
-```
-
-Alternatively do
+Compile and run as
 
 ```
 mvn compile
-mvn exec:exec
+cd target/classes
+java --add-modules=jdk.incubator.foreign --enable-native-access=ALL-UNNAMED  <class>
 ```
+
+or
+
+```
+mvn compile  exec:exec -Dexec.mainClass=<class>
+```
+
+where ``<class`` is
+
+* ``de.pdbm.ProcessId``
+* ``de.pdbm.Quicksort``
+
+
+### Process Id: Parameterless Function
+
+The class ``de.pdbm.ProcessId`` shows how to call C's ``getpid()``:
+
+```
+#include <sys/types.h>
+#include <unistd.h>
+
+pid_t getpid(void);
+```
+ 
+
+### Quicksort: Parameters and Callback
+
+The class ``de.pdbm.Quicksort`` shows how to call C's quicksort function:
+
+```
+#include <stdlib.h>
+
+void qsort(void *basis, size_t nmemb, size_t groesse,
+           int (*vergleich)(const void *, const void *));
+```
+
+The [FFM API introduction](https://github.com/openjdk/panama-foreign/blob/foreign-jextract/doc/panama_ffi.md)
+uses this function to show two way communication in FFM: Java is calling C's ``qsort`` which
+uses in turn a comparison function implemented as Java method.
+
 
