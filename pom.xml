@@ -39,7 +39,23 @@
 						<argument>--enable-native-access=ALL-UNNAMED</argument>
 						<argument>de.pdbm.Quicksort</argument>
 					</arguments>
+				</configuration>
+			</plugin>
 
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.3.1</version>
+				<configuration>
+					<header>Panama header</header>
+					<doctitle>Panama doctitle</doctitle>
+					<bottom>Copyright &#169; 2021 Bernd Müller. See
+						https://github.com/BerndMuller/Panama</bottom>
+					<doclint>none</doclint>
+					<release>17</release>
+					<additionalJOptions>
+						<additionalJOption>--add-modules=jdk.incubator.foreign</additionalJOption>
+					</additionalJOptions>
 				</configuration>
 			</plugin>
 

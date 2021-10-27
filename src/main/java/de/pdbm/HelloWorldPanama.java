@@ -9,6 +9,12 @@ import jdk.incubator.foreign.SymbolLookup;
 import jdk.incubator.foreign.FunctionDescriptor;
 import jdk.incubator.foreign.MemoryAddress;
 
+/**
+ * FFI's way of doing HelloWorldJni
+ * 
+ * @author bernd
+ *
+ */
 public class HelloWorldPanama {
 	
 	public static void main(String[] args) throws Throwable {

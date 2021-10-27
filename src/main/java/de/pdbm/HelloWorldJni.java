@@ -1,5 +1,11 @@
 package de.pdbm;
 
+/**
+ * Most simple example of using JNI
+ * 
+ * @author bernd
+ *
+ */
 public class HelloWorldJni {
 	
 	public static void main(String[] args) {
