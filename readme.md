@@ -47,6 +47,7 @@ System libraries are used via ``CLinker.systemLookup().lookup(<func>)`` as demon
 At the moment the examples include
 
 * Process Id
+* Printf
 * Quicksort
 
 Compile and run as
@@ -63,9 +64,10 @@ or
 mvn compile  exec:exec -Dexec.mainClass=<class>
 ```
 
-where ``<class`` is
+where ``<class>`` is
 
 * ``de.pdbm.ProcessId``
+* ``de.pdbm.Printf``
 * ``de.pdbm.Quicksort``
 
 
@@ -78,6 +80,16 @@ The class ``de.pdbm.ProcessId`` shows how to call C's ``getpid()``:
 #include <unistd.h>
 
 pid_t getpid(void);
+```
+
+ 
+### Printf: Variadic function, example with format string followed by integer, double and string
+
+The class ``de.pdbm.Printf`` shows how to call C's ``printf()``:
+
+```
+#include <stdio.h>
+int printf(const char *format, ...);
 ```
  
 
