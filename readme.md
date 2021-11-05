@@ -49,6 +49,7 @@ At the moment the examples include
 * Process Id
 * Printf
 * Quicksort
+* Time
 
 Compile and run as
 
@@ -61,7 +62,7 @@ java --add-modules=jdk.incubator.foreign --enable-native-access=ALL-UNNAMED  <cl
 or
 
 ```
-mvn compile  exec:exec -Dexec.mainClass=<class>
+mvn compile exec:exec -Dexec.mainClass=<class>
 ```
 
 where ``<class>`` is
@@ -69,6 +70,7 @@ where ``<class>`` is
 * ``de.pdbm.ProcessId``
 * ``de.pdbm.Printf``
 * ``de.pdbm.Quicksort``
+* ``de.pdbm.Time``
 
 
 ### Process Id: Parameterless Function
@@ -91,6 +93,9 @@ The class ``de.pdbm.Printf`` shows how to call C's ``printf()``:
 #include <stdio.h>
 int printf(const char *format, ...);
 ```
+
+Please note that the output of the printf() and println() statements are in the same order as
+in the source if you run via `java` but the other way round if you run via ``mvn exec:exec``.
  
 
 ### Quicksort: Parameters and Callback
@@ -107,5 +112,21 @@ void qsort(void *basis, size_t nmemb, size_t groesse,
 The [FFM API introduction](https://github.com/openjdk/panama-foreign/blob/foreign-jextract/doc/panama_ffi.md)
 uses this function to show two way communication in FFM: Java is calling C's ``qsort`` which
 uses in turn a comparison function implemented as Java method.
+
+
+### Time: Return value and return parameter
+
+The class ``de.pdbm.Time`` shows how to call C's ``time()``:
+
+```
+#include <time.h>
+
+time_t time(time_t *tloc);
+
+DESCRIPTION
+time()  returns  the  time  as  the  number of seconds since the Epoch, 1970-01-01 00:00:00 +0000 (UTC).
+
+If tloc is non-NULL, the return value is  also  stored  in  the  memory pointed to by tloc.
+```
 
 
